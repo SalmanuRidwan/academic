@@ -49,6 +49,10 @@ pip install -r requirements.txt
 ## Step 4: Set Up the Database
 To set up the default SQLite database, run:
 ```bash
+python manage.py makemigrations
+```
+Then run...
+```bash
 python manage.py migrate
 ```
 
