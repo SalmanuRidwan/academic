@@ -1,5 +1,47 @@
 {% extends "base.html" %}
 {% block title %}Fund Tracking{% endblock title %}
 {% block content %}
-Fund Tracking...
+<div class="card">
+    <div class="card-header">
+       <h5>Transactions</h5>
+    </div>
+    <div class="card-body table-border-style">
+       <div class="table-responsive">
+          <table class="table">
+             <thead>
+                <tr>
+                   <th>#</th>
+                   <th>Name</th>
+                   <th>Email</th>
+                   <th>Amount</th>
+                   <th>Date</th>
+                </tr>
+             </thead>
+             <tbody>
+                <tr>
+                   <td>1</td>
+                   <td>Bello Musa</td>
+                   <td>bello@email.com</td>
+                   <td>10,400</td>
+                   <td>12th December, 2024</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jatau Mudi</td>
+                    <td>jmudi@email.com</td>
+                    <td>200</td>
+                    <td>10th January, 2025</td>
+                </tr>
+                <tr>
+                   <td>3</td>
+                   <td>Talle Garbati</td>
+                    <td>ty@email.com</td>
+                    <td>1,500</td>
+                    <td>25th February, 2025</td>
+                </tr>
+             </tbody>
+          </table>
+       </div>
+    </div>
+ </div>
 {% endblock content %}

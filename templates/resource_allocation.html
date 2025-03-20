@@ -1,5 +1,47 @@
 {% extends "base.html" %}
 {% block title %}Resource Allocation{% endblock title %}
 {% block content %}
-Resource Allocation...
+<div class="card">
+    <div class="card-header">
+       <h5>Resource Allocation</h5>
+    </div>
+    <div class="card-body table-border-style">
+       <div class="table-responsive">
+          <table class="table">
+             <thead>
+                <tr>
+                   <th>#</th>
+                   <th>Donor</th>
+                   <th>Beneficiary</th>
+                   <th>Allocated Amount</th>
+                   <th>Date</th>
+                </tr>
+             </thead>
+             <tbody>
+                <tr>
+                   <td>1</td>
+                   <td>Bello Musa</td>
+                   <td>Jatau Mudi</td>
+                   <td>400,450</td>
+                   <td>12th December, 2024</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Ali Tanko</td>
+                    <td>Bello Turji</td>
+                    <td>3,500,200</td>
+                    <td>10th January, 2025</td>
+                </tr>
+                <tr>
+                   <td>3</td>
+                   <td>Talle Garbati</td>
+                    <td>Goruba Sauti</td>
+                    <td>1,500</td>
+                    <td>25th February, 2025</td>
+                </tr>
+             </tbody>
+          </table>
+       </div>
+    </div>
+ </div>
 {% endblock content %}
