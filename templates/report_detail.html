@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ report.title }}{% endblock title %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h2>{{ report.title }}</h2>
+        <p><strong>Location:</strong> {{ report.location }}</p>
+        <p><strong>Status:</strong> {{ report.status }}</p>
+        <p><strong>Date:</strong> {{ report.created_at|date:"d M, Y" }}</p>
+        <p><strong>Description:</strong> {{ report.description }}</p>
+
+        {% if report.tags.exists %}
+            <p><strong>Tags:</strong>
+                {% for tag in report.tags.all %}
+                    <span class="badge bg-secondary">{{ tag.name }}</span>
+                {% endfor %}
+            </p>
+        {% endif %}
+
+        {% if report.media.exists %}
+            <div>
+                <strong>Attached Media:</strong>
+                <ul>
+                    {% for media in report.media.all %}
+                        <li>
+                            <a href="{{ media.file.url }}" target="_blank">
+                                {{ media.file.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p>No media files attached.</p>
+        {% endif %}
+    </div>
+</div>
+
+<a href="{% url 'reports' %}">← Back to all reports</a>
+{% endblock content %}

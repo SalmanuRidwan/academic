@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        .checkout-container {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px;
+        }
+        .product-image {
+            max-width: 200px;
+            margin-right: 20px;
+        }
+        .product-details {
+            flex-grow: 1;
+        }
+        .product-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .payment-form {
+            margin-top: 20px;
+        }
+        .payment-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .payment-form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .payment-form button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .payment-form button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-details">
+        <form id="paymentForm" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" required />
+            </div>
+            {% comment %} <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" name="name"/>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" name="phone"/>
+            </div> {% endcomment %}
+            <div class="form-submit">
+                <button onclick="payWithPaystack()" type="submit">Pay</button>
+            </div>
+        </form>
+    </div>
+    
+    {% comment %} <script>
+        const paymentForm = document.getElementById('paymentForm');
+        paymentForm.addEventListener("submit", payWithPaystack, false);
+    
+        function payWithPaystack(e) {
+            e.preventDefault();
+    
+            let handler = PaystackPop.setup({
+                key: '{{ paystack_publick_key }}', // Replace with your public key
+                email: '{{ email }}',
+                amount: '{{ amount }}',
+                ref: '{{ payment.ref }}', // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                onClose: function(){
+                    alert('Window closed.');
+                },
+                callback: function(response){
+                    let message = 'Payment complete! Reference: ' + response.reference;
+                    alert(message);
+                }
+            });
+    
+            handler.openIframe();
+        }
+    </script> {% endcomment %}
+    <script>
+        function payWithPaystack() {
+            let currency = "NGN";
+            let ref = {{ payment.ref }};
+            let amount = {{ payment.amount }};
+            let obj = {
+                key: "{{ paystack_public_key }}",
+                email: {{ email }},
+                amount: {{ payment.amount }} * 100,
+                ref: ref,
+                callback: function (response) {
+                    let message = 'Payment complete! Reference: ' + response.reference;
+                    alert(message);
+                },
+            };
+            if (Boolean(currency)) {
+                obj.currency = currency.toUpperCase();
+            }
+    
+            var handler = PaystackPop.setup(obj);
+            handler.openIframe();
+        }
+    </script>
+    
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    
+</body>
+</html>

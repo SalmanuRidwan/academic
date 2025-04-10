@@ -6,5 +6,7 @@ urlpatterns = [
     path('twitter/', views.twitter, name='twitter'),
     path('geolocation/', views.geolocation, name='geolocation'),
     path('user-content/', views.user_content, name='user_content'),
+    path('reports/', views.reports, name='reports'),
+    path('reports/<int:pk>/', views.report_detail, name='report_detail'),
     path('ai-analysis/', views.ai_analysis, name='ai_analysis'),
 ]

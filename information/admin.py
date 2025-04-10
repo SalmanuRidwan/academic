@@ -3,7 +3,7 @@ from .models import Report, Tag
 
 @admin.register(Report)
 class ReportAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'location', 'status', 'created_at', 'tags_list')  # Columns in list view
+    list_display = ('title', 'location', 'status', 'created_at', 'tags_list')  # Columns in list view
     list_filter = ('status', 'location', 'created_at')  # Sidebar filters
     search_fields = ('title', 'description', 'location', 'author__username')  # Searchable fields
     ordering = ('-created_at', 'status')  # Default ordering in admin view

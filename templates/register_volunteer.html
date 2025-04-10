@@ -1,5 +1,53 @@
 {% extends "base.html" %}
-{% block title %}Volunteer Registration{% endblock title %}
+{% block title %}Volunteer Registration{% endblock %}
+
 {% block content %}
-<div class="card"><div class="card-header"><h5>Register Volunteer</h5></div><div class="card-body"><div class="row"><div class="col-md-6"><form><div class="mb-3"><label class="form-label" for="exampleInputEmail1">Email address</label> <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small></div><div class="mb-3"><label class="form-label" for="exampleInputPassword1">Password</label> <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></div><div class="mb-3 form-check"><input type="checkbox" class="form-check-input" id="exampleCheck1"> <label for="exampleCheck1">Ready immediately</label></div><button type="submit" class="btn btn-primary mb-4">Submit</button></form></div><div class="col-md-6"><form><div class="mb-3"><label class="form-label">Full Name</label> <input type="text" class="form-control" placeholder="Text"></div><div class="mb-3"><label class="form-label" for="exampleFormControlSelect1">Availability (Days)</label> <select class="form-select" id="exampleFormControlSelect1"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div><div class="mb-3"><label class="form-label" for="exampleFormControlTextarea1">Skills</label> <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></div></form></div></div></div></div>
-{% endblock content %}
+<div class="card">
+   <div class="card-header">
+      <h5>Register Volunteer</h5>
+   </div>
+   <div class="card-body">
+      <form method="post">
+         {% csrf_token %}
+         <div class="row">
+            <div class="col-md-6">
+               <div class="mb-3">
+                  <label class="form-label">Email address</label>
+                  {{ form.email }}
+               </div>
+               <div class="mb-3">
+                  <label class="form-label">Username</label>
+                  {{ form.username }}
+               </div>
+               <div class="mb-3">
+                  <label class="form-label">Location</label>
+                  {{ form.location }}
+               </div>
+               <div class="mb-3 form-check">
+                  {{ form.is_available }}
+                  <label class="form-check-label" for="{{ form.is_available.id_for_label }}">
+                     Ready immediately
+                  </label>
+               </div>
+            </div>
+
+            <div class="col-md-6">
+               <div class="mb-3">
+                  <label class="form-label">Availability (Days)</label>
+                  {{ form.availability }}
+               </div>
+               <div class="mb-3">
+                  <label class="form-label">Skills</label>
+                  {{ form.skills }}
+               </div>
+               <div class="mb-3">
+                  <label class="form-label">Bio</label>
+                  {{ form.bio }}
+               </div>
+            </div>
+         </div>
+         <button type="submit" class="btn btn-primary mb-4">Submit</button>
+      </form>
+   </div>
+</div>
+{% endblock %}

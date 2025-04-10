@@ -7,40 +7,25 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-6">
-                <form>
+            <div class="col-md-12">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label" for="exampleInputEmail1">Email address</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <label class="form-label" for="exampleInputEmail1">Title</label>
+                        {{ form.title }}
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Title</label>
-                        <input type="text" class="form-control" placeholder="Text">
+                        <label class="form-label">Description</label>
+                        {{ form.description }}
                     </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label for="exampleCheck1">Ready immediately</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-4">Submit</button>
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    <form>
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" placeholder="Text">
-                        </div>
-                        <div class="mb-3"><label class="form-label" for="exampleFormControlSelect1">Tags</label>
-                            <select class="form-select" id="exampleFormControlSelect1">
-                                <option>Research</option><option>Cooking</option><option>Running</option><option>Swimming</option><option>Hubby</option></select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="exampleFormControlTextarea1">Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-                        </form>
+                    <div class="mb-3">
+                        <label class="form-label" for="Location">Location</label>
+                        {{ form.location }}
                     </div>
+                    <label for="file">Upload Media (Optional):</label>
+                    <input type="file" name="file" multiple>
+                    <input type="submit" class="btn btn-primary m-2 w-100 " value="Submit" />
+                </form>
                 </div>
             </div>
         </div>

@@ -32,6 +32,7 @@
                 </div>
                 <div class="navbar-content">
                     <div class="card pc-user-card">
+                        {% if user.is_authenticated %}
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0"><img src="{% static 'assets/images/user/avatar-1.jpg' %}" alt="user-image" class="user-avtar wid-45 rounded-circle"></div>
@@ -50,6 +51,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                     <ul class="pc-navbar">
                         <li class="pc-item pc-caption"><label data-i18n="Menu Items">Menu Items</label></li>
                         
@@ -206,6 +208,7 @@
                     </ul>
                 </div>
                 <!-- [Mobile Media Block end] -->
+                {% if user.is_authenticated %}
                 <div class="ms-auto">
                     <ul class="list-unstyled">
                         <li class="dropdown pc-h-item header-user-profile">
@@ -229,6 +232,7 @@
                         </li>
                     </ul>
                 </div>
+                {% endif %}
             </div>
         </header>
         <!-- [ Header ] end --><!-- [ Main Content ] start -->

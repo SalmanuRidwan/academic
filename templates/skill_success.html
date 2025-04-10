@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Skill assignment{% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-body text-center">
+        <h3 class="card-title text-success">Skill assingnment!</h3>
+        <p class="card-text mt-3">
+            Tasks created and volunteer matching completed.
+        </p>
+        <a href="{% url 'volunteer_home' %}" class="btn btn-primary mt-3">Go Back</a>
+    </div>
+</div>
+{% endblock %}

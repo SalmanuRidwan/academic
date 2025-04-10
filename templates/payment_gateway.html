@@ -8,23 +8,55 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-12">
-                <form>
+                <form method="post">
+                    {% csrf_token %}
                     <div class="mb-12">
-                        <label class="form-label" for="exampleInputEmail1">Email address</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label class="form-label">Email address</label>
+                        {{ form.email }}
                     </div>
                     <div class="mb-12">
-                        <label class="form-label" for="exampleInputEmail1">Full Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="fullNameHelp" placeholder="Enter Full Name">
+                        <label class="form-label">Full Name</label>
+                        {{ form.donar_name }}
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Amount</label>
-                        <input type="text" class="form-control" placeholder="NGN 12,000,000">
+                        {{ form.amount }}
                     </div>
-                        <button type="submit" class="btn btn-primary mb-4">Donate</button>
-                    </form>
-                </div>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        {{ form.description }}
+                    </div>
+                        <button type="submit" onclick="payWithPaystack()" class="btn w-100 btn-primary mb-4">Donate</button>
+                </form>
             </div>
         </div>
+    </div>
+</div>
+
+<script>
+    function payWithPaystack() {
+        let currency = "NGN";
+        let ref = "2423221";
+        let amount = 10000;
+        let obj = {
+            key: "pk_test_802328416e3feb45aaaf3f19e0c455d011152d33",
+            email: "samepleemail@domain.com",
+            amount: 10000 * 100,
+            ref: ref,
+            callback: function (response) {
+                let message = 'Payment complete! Reference: ' + '2423221';
+                alert(message);
+            },
+        };
+        if (Boolean(currency)) {
+            obj.currency = currency.toUpperCase();
+        }
+
+        var handler = PaystackPop.setup(obj);
+        handler.openIframe();
+    }
+</script> 
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
 {% endblock content %}

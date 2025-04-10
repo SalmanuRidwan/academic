@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock title %}
+{% block content %}
+<div class="card">
+    <div class="card-body table-border-style">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for report in reports %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="{% url 'report_detail' report.pk %}">{{ report.title }}</a></td>
+                            <td>{{ report.location }}</td>
+                            <td>{{ report.status }}</td>
+                            <td>{{ report.created_at|date:"d M, Y" }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6">No reports available.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+{% endblock content %}

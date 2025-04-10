@@ -1,5 +1,91 @@
 {% extends "base.html" %}
-{% block title %}Donation{% endblock title %}
+{% block title %}Donation Dashboard{% endblock title %}
+
 {% block content %}
-Donation...
-{% endblock content %}
+<div class="container mt-4">
+    <h3 class="text-center mb-4">Donation Dashboard</h3>
+
+    <div class="row">
+        <!-- Total Amount Raised -->
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h5>Total Amount Raised</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-success">${{ total_raised|floatformat:2 }}</h3>
+                    <h3 class="text-success">$21,890</h3>
+                    <p class="text-muted">The total donations received so far.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amount Transferred -->
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h5>Amount Transferred</h5>
+                </div>
+                <div class="card-body">
+                    {% comment %} <h3 class="text-primary">${{ total_transferred|floatformat:2 }}</h3> {% endcomment %}
+                    <h3 class="text-primary">$50,990</h3>
+                    <p class="text-muted">Total amount transferred to foundations, individuals, and aid programs.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Remaining Balance -->
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h5>Remaining Balance</h5>
+                </div>
+                <div class="card-body">
+                    {% comment %} <h3 class="text-warning">${{ total_raised|floatformat:2 - total_transferred|floatformat:2 }}</h3> {% endcomment %}
+                    <h3 class="text-warning">$102,321</h3>
+                    <p class="text-muted">Amount remaining after transfers to be used for future donations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Stats Summary -->
+    <div class="row mt-4">
+        <!-- Number of Donations -->
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h5>Number of Donations</h5>
+                </div>
+                <div class="card-body">
+                    {% comment %} <h3>{{ donation_count }}</h3> {% endcomment %}
+                    <h3>5,633</h3>
+                    <p class="text-muted">Total number of donations received.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Donations -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Recent Donations</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        {% for donation in recent_donations %}
+                            <li class="list-group-item">
+                                {% comment %} <strong>${{ donation.amount|floatformat:2 }}</strong> - {{ donation.donor_name }} on {{ donation.date|date:"d M, Y" }} {% endcomment %}
+                                <strong>$12,423</strong> - Bello Ado on 10th April, 2025
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    {% if not recent_donations %}
+                        <p class="text-muted">No recent donations.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
