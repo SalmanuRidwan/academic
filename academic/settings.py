@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'volunteer',
     'donation',
     'information',
 ]
@@ -107,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Africa/Lagos"
 
 USE_I18N = True
 
@@ -118,8 +117,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+PAYSTACK_SECRET_KEY = 'sk_test_30db74807c977969e04888cedd0e538e31a2836c'
+PAYSTACK_PUBLIC_KEY = 'pk_test_802328416e3feb45aaaf3f19e0c455d011152d33'
+
+TWITTER_API_KEY = 'eCFPWCJmYMb3XjRxECiP5AJsp'
+TWITTER_SECRET_KEY = 'qqjV0mW2ZqQDwL2Sx4c7xq2enyYwCpEegBza0pj36mlf5ZjHZn'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'finalyearproject@nile.edu.ng'
+EMAIL_HOST = 'smtp-relay.brevo.com'
+EMAIL_HOST_USER = 'ridwansalmanu96@gmail.com'
+EMAIL_HOST_PASSWORD = 'UACS3xgIJ2mrPzYw'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True

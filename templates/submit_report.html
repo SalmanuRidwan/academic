@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Submit a Report{% endblock title %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h5>Submit a Report</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label class="form-label">Title</label>
+                    {{ form.title }}
+                    {% if form.title.errors %}
+                        <div class="text-danger">{{ form.title.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    {{ form.description }}
+                    {% if form.description.errors %}
+                        <div class="text-danger">{{ form.description.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Location</label>
+                    {{ form.location }}
+                    {% if form.location.errors %}
+                        <div class="text-danger">{{ form.location.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tags (optional)</label>
+                    <div class="form-check">
+                        {{ form.tags }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Upload Media (optional)</label>
+                    <input type="file" name="file" multiple class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Submit Report</button>
+            </form>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="Location">Location</label>
+        {{ form.location }}
+        <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="detectLocation()">📍 Use My Location</button>
+    </div>
+    
+    <script>
+    function detectLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    const locationField = document.getElementById("id_location");
+                    locationField.value = lat + "," + lng;
+                },
+                function(error) {
+                    alert("Geolocation failed or was denied.");
+                }
+            );
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+    </script>
+    
+</div>
+{% endblock content %}

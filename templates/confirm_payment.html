@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Processing Payment{% endblock title %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <p>Redirecting to Paystack...</p>
+    </div>
+</div>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+    window.onload = function () {
+        payWithPaystack();
+    }
+
+    function payWithPaystack() {
+        let handler = PaystackPop.setup({
+            key: "pk_test_802328416e3feb45aaaf3f19e0c455d011152d33",
+            email: "{{ donation.email }}",
+            amount: {{ donation.amount|floatformat:2 }} * 100,
+            currency: "NGN",
+            ref: "{{ donation.payment_reference }}",
+            callback: function(response) {
+                window.location.href = "/donation/confirm-payment/?reference=" + response.reference;
+            },
+            onClose: function() {
+                alert('Transaction cancelled.');
+            }
+        });
+        handler.openIframe();
+    }
+</script>
+{% endblock content %}

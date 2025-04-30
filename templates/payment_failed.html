@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="alert alert-danger mt-5">
+    <h4>⚠️ Payment Failed</h4>
+    <p>We could not verify your payment.</p>
+    <p><strong>Reference:</strong> {{ ref }}</p>
+    <a href="{% url 'donate' %}" class="btn btn-primary mt-3">Try Again</a>
+</div>
+{% endblock content %}

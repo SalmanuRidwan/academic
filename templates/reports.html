@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}All Reports{% endblock title %}
+{% block content %}
+<div class="container mt-5">
+    <h3 class="mb-4">📋 Submitted Reports</h3>
+
+    {% if reports %}
+        <div class="list-group">
+            {% for report in reports %}
+                <a href="{% url 'report_detail' report.pk %}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ report.title }}</h5>
+                        <small>{{ report.created_at|date:"d M Y H:i" }}</small>
+                    </div>
+                    <p class="mb-1 text-muted">{{ report.description|truncatewords:20 }}</p>
+                    <small>📍 {{ report.location }} — Status: <strong>{{ report.status }}</strong></small>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">No reports submitted yet.</div>
+    {% endif %}
+</div>
+{% endblock content %}

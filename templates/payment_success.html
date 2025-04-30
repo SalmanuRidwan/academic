@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="alert alert-success mt-5">
+    <h4>🎉 Payment Successful</h4>
+    <p>Thank you, {{ donation.donor_name }}!</p>
+    <p>Your donation of ₦{{ donation.amount }} was successful.</p>
+    <p><strong>Reference:</strong> {{ donation.payment_reference }}</p>
+</div>
+{% endblock content %}

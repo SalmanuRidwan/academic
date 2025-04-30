@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Donation Dashboard{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-5 fw-bold">💰 Donation Dashboard</h2>
+
+    <div class="row g-4">
+        <!-- Total Raised -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-cash-coin display-5 text-success mb-2"></i>
+                    <h5 class="card-title">Total Raised</h5>
+                    <h3 class="text-success fw-bold">₦{{ total_raised|floatformat:2 }}</h3>
+                    <p class="text-muted small">Donations received so far</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amount Transferred -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-bank display-5 text-primary mb-2"></i>
+                    <h5 class="card-title">Amount Transferred</h5>
+                    <h3 class="text-primary fw-bold">₦{{ total_transferred|floatformat:2 }}</h3>
+                    <p class="text-muted small">Given to foundations & aid programs</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Remaining Balance -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-wallet2 display-5 text-warning mb-2"></i>
+                    <h5 class="card-title">Remaining Balance</h5>
+                    <h3 class="text-warning fw-bold">₦{{ remaining_balance|floatformat:2 }}</h3>
+                    <p class="text-muted small">Available for future donations</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Stats Summary -->
+    <div class="row g-4 mt-4">
+        <!-- Number of Donations -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-person-hearts display-5 text-info mb-2"></i>
+                    <h5 class="card-title">Number of Donations</h5>
+                    <h3 class="fw-bold">{{ donation_count }}</h3>
+                    <p class="text-muted small">Total unique donations received</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Donations -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Recent Donations</h5>
+                </div>
+                <div class="card-body p-0">
+                    {% if recent_donations %}
+                        <ul class="list-group list-group-flush">
+                            {% for donation in recent_donations %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>₦{{ donation.amount|floatformat:2 }}</strong><br>
+                                        <small class="text-muted">{{ donation.donor_name }} – {{ donation.date|date:"d M Y" }}</small>
+                                    </div>
+                                    {% if donation.status == "Success" %}
+                                        <span class="badge bg-success">✔</span>
+                                    {% elif donation.status == "Pending" %}
+                                        <span class="badge bg-warning text-dark">⏳</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">✖</span>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="p-3 text-center text-muted">
+                            No recent donations yet.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

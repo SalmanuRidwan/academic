@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Crisis Report System{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">🌍 Reporting System</h1>
+        <p class="lead text-muted">Submit, track, and analyze reports in real-time.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5>📝 Submit a Report</h5>
+                    <p class="text-muted">Share real-world issues affecting your area.</p>
+                    <a href="{% url 'submit_report' %}" class="btn btn-outline-primary w-100">Report Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5>📋 View Reports</h5>
+                    <p class="text-muted">Browse reports submitted by users.</p>
+                    <a href="{% url 'reports_list' %}" class="btn btn-outline-success w-100">View Reports</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5>💰 Donate</h5>
+                    <p class="text-muted">Support aid efforts with your donation.</p>
+                    <a href="{% url 'donate' %}" class="btn btn-outline-warning w-100">Make a Donation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mt-4">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5>📍 Map View</h5>
+                    <p class="text-muted">Visualize reported issues on a geolocation map.</p>
+                    <a href="#" class="btn btn-outline-secondary w-100 disabled">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5>🤖 AI Analysis</h5>
+                    <p class="text-muted">Get automated insights from collected data.</p>
+                    <a href="#" class="btn btn-outline-secondary w-100 disabled">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
