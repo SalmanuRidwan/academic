@@ -37,25 +37,37 @@
                         {% if request.path|slice:":12" == '/information' %}
 
                         <li class="pc-item pc-caption"><label data-i18n="Menu Items">Menu Items</label></li>
+                        
                         <li class="pc-item pc-hasmenu">
-                            <a href="#" class="pc-link">
+                            <a href="{% url 'information_home' %}" class="pc-link">
                                 <span class="pc-micon">
                                     <svg class="pc-icon">
                                         <use xlink:href="#custom-status-up"></use>
                                     </svg>
                                 </span>
-                                <span class="pc-mtext" data-i18n="User Reports">User Reports</span>
+                                <span class="pc-mtext" data-i18n="Dashboard">Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="pc-item pc-hasmenu">
+                            <a href="{% url 'submit_report' %}" class="pc-link">
+                                <span class="pc-micon">
+                                    <svg class="pc-icon">
+                                        <use xlink:href="#custom-status-up"></use>
+                                    </svg>
+                                </span>
+                                <span class="pc-mtext" data-i18n="Submit Report">Submit Report</span>
                             </a>
                         </li>
                         
                         <li class="pc-item pc-hasmenu">
-                            <a href="#" class="pc-link">
+                            <a href="{% url 'reports_list' %}" class="pc-link">
                                 <span class="pc-micon">
                                     <svg class="pc-icon">
                                         <use xlink:href="#custom-level"></use>
                                     </svg>
                                 </span>
-                                <span class="pc-mtext" data-i18n="Twitter Data">Twitter Data</span>
+                                <span class="pc-mtext" data-i18n="Reports">Reports</span>
                             </a>
                         </li>
                         
@@ -66,7 +78,7 @@
                                         <use xlink:href="#custom-user"></use>
                                     </svg>
                                 </span>
-                                <span class="pc-mtext">AI Analysis</span> 
+                                <span class="pc-mtext">Report Detail</span> 
                             </a>
                         </li>
                         

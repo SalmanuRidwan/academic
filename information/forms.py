@@ -1,5 +1,5 @@
 from django import forms
-from .models import Report, Tag
+from .models import Report
 
 class ReportForm(forms.ModelForm):
     title = forms.CharField(
@@ -29,12 +29,6 @@ class ReportForm(forms.ModelForm):
         })
     )
 
-    tags = forms.ModelMultipleChoiceField(
-        queryset=Tag.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=False
-    )
-
     class Meta:
         model = Report
-        fields = ['title', 'description', 'location', 'tags']
+        fields = ['title', 'description', 'location']

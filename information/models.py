@@ -5,16 +5,10 @@ REPORT_STATUS = [
     ('Open', 'Open'),
     ('Resolved', 'Resolved')
 ]
-class Tag(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-
-    def __str__(self):
-        return self.name
 
 class Report(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=12)
     description = models.TextField()
-    tags = models.ManyToManyField(Tag)
     created_at = models.DateTimeField(auto_now_add=True)
     location = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(

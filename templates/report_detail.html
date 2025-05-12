@@ -23,13 +23,16 @@
             {% if report.media.all %}
                 <hr>
                 <h6>Attached Media:</h6>
-                <ul class="list-unstyled">
+                <div class="row">
                     {% for media in report.media.all %}
-                        <li>
-                            <a href="{{ media.file.url }}" target="_blank">{{ media.file.name|basename }}</a>
-                        </li>
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <img src="{{ media.file.url }}" class="img-fluid card-img-top" alt="Media">
+                            </div>
+                        </div>
                     {% endfor %}
-                </ul>
+                </div>
+                
             {% endif %}
         </div>
     </div>

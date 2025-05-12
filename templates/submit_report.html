@@ -13,6 +13,7 @@
                 <div class="mb-3">
                     <label class="form-label">Title</label>
                     {{ form.title }}
+                    <input type="text" name="title">
                     {% if form.title.errors %}
                         <div class="text-danger">{{ form.title.errors }}</div>
                     {% endif %}
@@ -32,6 +33,7 @@
                     {% if form.location.errors %}
                         <div class="text-danger">{{ form.location.errors }}</div>
                     {% endif %}
+                    <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="detectLocation()">📍 Use My Location</button>
                 </div>
 
                 <div class="mb-3">
@@ -49,11 +51,6 @@
                 <button type="submit" class="btn btn-primary w-100">Submit Report</button>
             </form>
         </div>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="Location">Location</label>
-        {{ form.location }}
-        <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="detectLocation()">📍 Use My Location</button>
     </div>
     
     <script>
